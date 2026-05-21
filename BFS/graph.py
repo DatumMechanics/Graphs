@@ -1,6 +1,6 @@
 from typing import Dict, List, Optional
 
-# --- Queue Support Structure ---
+# --- Queue for BFS ---
 class Node:
     def __init__(self, value: str) -> None:
         self.value: str = value
@@ -59,7 +59,7 @@ class DirectedGraph:
             return []
 
         # Dictionary to track visited nodes and list for final output order
-        visited: Dict[str, bool] = {start_vertex: True}
+        visited: Set[str] = {start_vertex}
         order_of_visit: List[str] = []
         
         # Instantiate your custom Queue
@@ -73,7 +73,14 @@ class DirectedGraph:
             # Enqueue all unvisited neighbors level by level
             for neighbor in self.adj_list[current_vertex]:
                 if neighbor not in visited:
-                    visited[neighbor] = True
+                    visited.add(neighbor)
                     queue.enqueue(neighbor)
 
         return order_of_visit
+
+    def display(self) -> None:
+        """Prints the adjacency list representation."""
+        print("--- Directed Graph ---")
+        for vertex, neighbors in self.adj_list.items():
+            neighbors_str: str = " -> ".join(neighbors)
+            print(f"{vertex}: {neighbors_str}")

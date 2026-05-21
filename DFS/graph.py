@@ -40,6 +40,13 @@ class DirectedGraph:
         self.add_vertex(destination)
         self.adj_list[source].append(destination)
 
+    def display(self) -> None:
+        """Prints the adjacency list representation."""
+        print("--- Directed Graph ---")
+        for vertex, neighbors in self.adj_list.items():
+            neighbors_str: str = " -> ".join(neighbors)
+            print(f"{vertex}: {neighbors_str}")
+
     def dfs(self, start_vertex: str) -> List[str]:
         """Performs an iterative depth-first search using a typed Set for visited tracking."""
         if start_vertex not in self.adj_list:
