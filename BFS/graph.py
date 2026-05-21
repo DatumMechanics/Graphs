@@ -58,11 +58,11 @@ class DirectedGraph:
         if start_vertex not in self.adj_list:
             return []
 
-        # Dictionary to track visited nodes and list for final output order
+        # Set to track visited nodes and list for final output order
         visited: Set[str] = {start_vertex}
         order_of_visit: List[str] = []
         
-        # Instantiate your custom Queue
+        # Instantiate the Queue
         queue: Queue = Queue()
         queue.enqueue(start_vertex)
 
